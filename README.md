@@ -1,5 +1,9 @@
 # EC_art
 
+## 初期設定
+composer require fzaninotto/faker
+composer require phpunit/phpunit
+
 ## データベース名
 ec_art
 
