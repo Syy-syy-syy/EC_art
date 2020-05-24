@@ -1,41 +1,52 @@
 <?php
+ini_set('display_errors', 1);
 
 session_start();
 
 require_once(dirname(__FILE__).'/../functions/pdo_db.php');
 
-$errors = '';
+$errors = array();
 
 if (isset($_POST['Register'])) {
     if (empty($_POST['name'])) {
-        $errors = 'User Nameが未入力です。';
-    } elseif (empty($_POST['email'])) {
-        $errors = 'Emailが未入力です。';
-    } elseif (empty($_POST['password'])) {
-        $errors = 'Passwordが未入力です。';
-    } elseif (strlen($_POST['password']) < 8) {
-        $errors = 'Passwordが短すぎます。';
-    } elseif (empty($_POST['password2'])) {
-        $errors = 'Confirm Passwordが未入力です。';
-    } elseif ($_POST['password'] !== $_POST['password2']) {
-        $errors = 'PasswordとConfirm Passwordが違います。';
-    } else {
+        $errors[] = 'User Nameが未入力です。';
+    }
+
+    if (empty($_POST['email'])) {
+        $errors[] = 'Emailが未入力です。';
+    }
+
+    if (empty($_POST['password'])) {
+        $errors[] = 'Passwordが未入力です。';
+    }
+
+    if (strlen($_POST['password']) < 8) {
+        $errors[] = 'Passwordが短すぎます。';
+    }
+
+    if (empty($_POST['password2'])) {
+        $errors[] = 'Confirm Passwordが未入力です。';
+    }
+
+    if ($_POST['password'] !== $_POST['password2']) {
+        $errors[] = 'PasswordとConfirm Passwordが違います。';
+    }
+
+    if (!$errors) {
         $username = $_POST["name"];
         $email = $_POST["email"];
         $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
     }
 
     if (isset($username) && isset($email) && isset($password)) {
-        $flag = register_user($username, $email, $password);
-        add_session($username, $email, $password);
-    } else {
-        echo $errors;
-        echo 'errorです。正しい値を入力してください。';
+        $errors[] = register_user($username, $email, $password);
     }
 }
+
 require_once(dirname(__FILE__).'/./commoms/head.php');
 require_once(dirname(__FILE__).'/./commoms/navbar.php');
 ?>
+
 <form action="register.php" method="POST">
     <label>User Name</label>
     <input type="text" name="name" placeholder="name" required>

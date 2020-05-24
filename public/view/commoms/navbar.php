@@ -41,3 +41,4 @@
         </div>
     </nav>
 </header>
+<?php include('error_messages.php'); ?>
