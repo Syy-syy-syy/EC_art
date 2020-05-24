@@ -58,6 +58,7 @@ require_once(dirname(__FILE__).'/./commoms/navbar.php');
     <input type="password" name="password2" minlength="8" placeholder="Confirm Password" required>
     <button type="submit" name="Register" class="btn btn-primary">Register</button>
 </form>
+
 <?php
 require_once(dirname(__FILE__).'/./commoms/html_script.php');
 ?>

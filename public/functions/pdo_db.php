@@ -19,7 +19,7 @@ function db_init() {
 
 function register_user($username, $email, $password) {
     $pdo = db_init();
-    $sql = 'INSERT INTO users (name, email, password) VALUES (:name, :email, :password)';
+    $sql = 'INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, 5)';
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':name', $username, PDO::PARAM_STR);

@@ -40,6 +40,7 @@ require_once(dirname(__FILE__).'/./commoms/navbar.php');
     <input type="password" name="password" minlength="8" placeholder="password" required>
     <input type="submit" name="Login" value="Login" class="btn btn-primary"></button>
 </form>
+
 <?php
 require_once(dirname(__FILE__).'/./commoms/html_script.php');
 ?>
