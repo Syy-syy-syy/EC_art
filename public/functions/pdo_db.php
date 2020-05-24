@@ -13,7 +13,7 @@ function db_init() {
         $pdo = new PDO($dsn, $user, $pass, $options);
         return $pdo;
     } catch (PDOException $e) {
-        return $errors = $e->getMessage();
+        return $e->getMessage();
     }
 }
 
@@ -44,10 +44,10 @@ function register_user($username, $email, $password) {
         } else {
             $stmt = null;
             $pdo = null;
-            return $errors = 'ユーザー登録に失敗しました。';
+            return 'ユーザー登録に失敗しました。';
         }
     } catch (PDOException $e) {
-        return $errors = $e->getMessage();
+        return $e->getMessage();
     }
 }
 
@@ -69,8 +69,74 @@ function user_login($email, $password) {
         } else {
             $stmt = null;
             $pdo = null;
-            return $errors = 'Emailまたはパスワードに誤りがあります。';
+            return 'Emailまたはパスワードに誤りがあります。';
         }
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
+function add_category($name) {
+    $pdo = db_init();
+    $sql = 'INSERT INTO categories (name) VALUES (:name)';
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt = null;
+        $pdo = null;
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
+
+function add_item($name, $price, $stock, $descript, $category_id) {
+    $pdo = db_init();
+    $sql = 'INSERT INTO
+                items (name, price, stock, descript, category_id)
+            VALUES
+                (:name, :price, :stock, :descript, :cate_id)';
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+        $stmt->bindParam(':stock', $stock, PDO::PARAM_INT);
+        $stmt->bindParam(':descript', $descript, PDO::PARAM_STR);
+        $stmt->bindParam(':cate_id', $category_id, PDO::PARAM_INT);
+        print_r($stmt);
+        $stmt->execute();
+        $pdo = null;
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
+
+function get_categories() {
+    $pdo = db_init();
+    try {
+        $sql = 'SELECT * FROM categories';
+        $stmt= $pdo->query($sql);
+        $all_categories = $stmt->fetchAll();
+        $stmt = null;
+        $pdo = null;
+        return $all_categories;
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
+
+function get_all_items() {
+    $pdo = db_init();
+    try {
+        $sql = 'SELECT * FROM items';
+        $stmt= $pdo->query($sql);
+        $all_items = $stmt->fetchAll();
+        $stmt = null;
+        $pdo = null;
+        return $all_items;
     } catch (PDOException $e) {
         return $e->getMessage();
     }
