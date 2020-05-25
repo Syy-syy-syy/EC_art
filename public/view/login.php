@@ -3,21 +3,12 @@
 session_start();
 
 require_once(dirname(__FILE__).'/../functions/pdo_db.php');
+require_once(dirname(__FILE__).'/../functions/validation.php');
 
 $errors = array();
 
 if (isset($_POST['Login'])) {
-    if (empty($_POST['email'])) {
-        $errors[] = 'Emailが未入力です。';
-    }
-
-    if (empty($_POST['password'])) {
-        $errors[] = 'Passwordが未入力です。';
-    }
-
-    if (strlen($_POST['password']) < 8) {
-        $errors[] = 'Passwordが短すぎます。';
-    }
+    $errors = validate_login($_POST);
 
     if (!$errors) {
         $email = $_POST["email"];

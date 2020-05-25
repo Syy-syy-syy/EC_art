@@ -5,6 +5,7 @@
 ini_set('display_errors', 1);
 
 require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
+require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 $errors = array();
 session_start();
@@ -22,27 +23,8 @@ if (isset($_POST['category_register'])) {
 }
 
 if (isset($_POST['item_register'])) {
-    if (empty($_POST['name'])) {
-        $errors[] = 'Category Nameが未入力です。';
-    }
-    if (empty($_POST['price'])) {
-        $errors[] = 'priceが未入力です。';
-    }
-    if (!is_numeric($_POST['price'])) {
-        $errors[] = 'priceは数値で入力してください。';
-    }
-    if (empty($_POST['stock'])) {
-        $errors[] = 'stockが未入力です。';
-    }
-    if (!is_numeric($_POST['stock'])) {
-        $errors[] = 'stockは数値で入力してください。';
-    }
-    if (empty($_POST['descript'])) {
-        $errors[] = 'descriptが未入力です。';
-    }
-    if (empty($_POST['cate_id'])) {
-        $errors[] = 'Categoryが未入力です。';
-    }
+    $errors = validate_item_register($post);
+
     if (!$errors) {
         $item_name = $_POST['name'];
         $price = $_POST['price'];

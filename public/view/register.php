@@ -4,33 +4,12 @@ ini_set('display_errors', 1);
 session_start();
 
 require_once(dirname(__FILE__).'/../functions/pdo_db.php');
+require_once(dirname(__FILE__).'/../functions/validation.php');
 
 $errors = array();
 
 if (isset($_POST['Register'])) {
-    if (empty($_POST['name'])) {
-        $errors[] = 'User Nameが未入力です。';
-    }
-
-    if (empty($_POST['email'])) {
-        $errors[] = 'Emailが未入力です。';
-    }
-
-    if (empty($_POST['password'])) {
-        $errors[] = 'Passwordが未入力です。';
-    }
-
-    if (strlen($_POST['password']) < 8) {
-        $errors[] = 'Passwordが短すぎます。';
-    }
-
-    if (empty($_POST['password2'])) {
-        $errors[] = 'Confirm Passwordが未入力です。';
-    }
-
-    if ($_POST['password'] !== $_POST['password2']) {
-        $errors[] = 'PasswordとConfirm Passwordが違います。';
-    }
+    $errors = validate_register($_POST);
 
     if (!$errors) {
         $username = $_POST["name"];
