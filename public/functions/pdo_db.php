@@ -17,14 +17,15 @@ function db_init() {
     }
 }
 
-function register_user($username, $email, $password) {
+function register_user($username, $email, $password, $role = 5) {
     $pdo = db_init();
-    $sql = 'INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, 5)';
+    $sql = 'INSERT INTO users (name, email, password, role) VALUES (:name, :email, :password, :role)';
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':name', $username, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':role', $role, PDO::PARAM_INT);
         $flag = $stmt->execute();
         $stmt = null;
         $pdo = null;
