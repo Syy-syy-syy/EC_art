@@ -7,6 +7,10 @@ require_once(dirname(__FILE__).'/../functions/validation.php');
 
 $errors = array();
 
+if ($_SESSION['name']) {
+    header("Location: /index.php");
+}
+
 if (isset($_POST['Login'])) {
     $errors = validate_login($_POST);
 

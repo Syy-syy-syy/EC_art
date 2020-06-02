@@ -18,15 +18,23 @@
             </ul>
             <ul class="navbar-nav">
                 <?php if (isset($_SESSION['login_name'])) { ?>
+                    <?php if ($_SESSION['is_admin']) { ?>
+                        <li class="nav-item">
+                        <a href="/admin/add_items.php" class="nav-link">Add Item</a>
+                    </li>
                     <li class="nav-item">
-                    <a href="#" class="nav-link">Cart</a>
+                        <a href="/admin/add_user.php" class="nav-link">Add User</a>
+                    </li>
+                    <?php } ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Cart</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['login_name']); ?></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item">MyPage</li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item"><a href="logout.php">logout</a></li>
+                            <li class="dropdown-item"><a href="/logout.php">logout</a></li>
                         </ul>
                     </li>
                 <?php } else { ?>

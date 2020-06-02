@@ -10,6 +10,10 @@ require_once(dirname(__FILE__).'/../../functions/validation.php');
 $errors = array();
 session_start();
 
+if (!$_SESSION['is_admin']) {
+    header("Location: /index.php");
+}
+
 if (isset($_POST['category_register'])) {
     if (empty($_POST['name'])) {
         $errors[] = 'Category Nameが未入力です。';
@@ -38,7 +42,6 @@ if (isset($_POST['item_register'])) {
     }
 }
 
-
 $cate_list = get_categories();
 
 require_once(dirname(__FILE__).'/../commoms/head.php');
@@ -49,7 +52,7 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
     <form method="POST">
         <label>Category Name</label>
         <input type="text" name="name" placeholder="name" required>
-        <button type="submit" name="category_register" class="btn btn-primary">Category_Register</button>
+        <button type="submit" name="category_register" class="btn btn-primary">Category Register</button>
     </form>
 
     <?php if($cate_list) { ?>
@@ -70,7 +73,7 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
                 <?php } ?>
             </select>
             <!-- カテゴリをループ処理で取得する -->
-            <button type="submit" name="item_register" class="btn btn-primary">Item_Register</button>
+            <button type="submit" name="item_register" class="btn btn-primary">Item Register</button>
         </form>
     <?php } else { ?>
         商品登録をする場合は最初にカテゴリ登録を行ってください。

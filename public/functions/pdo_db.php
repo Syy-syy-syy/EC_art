@@ -30,18 +30,7 @@ function register_user($username, $email, $password, $role = 5) {
         $stmt = null;
         $pdo = null;
         if ($flag) {
-            $pdo = db_init();
-            $sql = 'SELECT * FROM users WHERE name = :name AND email = :email';
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':name', $username, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->execute();
-            $ses_name = $stmt->fetch()['name'];
-            $_SESSION['login_name'] = $ses_name;
-            $stmt = null;
-            $pdo = null;
-            header("Location: index.php");
-            exit();
+            header("Location: /login.php");
         } else {
             $stmt = null;
             $pdo = null;
@@ -56,16 +45,21 @@ function user_login($email, $password) {
     $pdo = db_init();
     try {
         $sql = 'SELECT * FROM users WHERE email = :email';
-        $stmt= $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user_info = $stmt->fetch();
         if (password_verify($password, $user_info['password'])) {
             session_regenerate_id(true);
+            if ($user_info['role'] === 1) {
+                $_SESSION['is_admin'] = TRUE;
+            } else {
+                $_SESSION['is_admin'] = FALSE;
+            }
             $_SESSION['login_name'] = $user_info['name'];
             $stmt = null;
             $pdo = null;
-            header("Location: index.php");
+            header("Location: /index.php");
             exit();
         } else {
             $stmt = null;
@@ -76,6 +70,7 @@ function user_login($email, $password) {
         return $e->getMessage();
     }
 }
+
 function add_category($name) {
     $pdo = db_init();
     $sql = 'INSERT INTO categories (name) VALUES (:name)';

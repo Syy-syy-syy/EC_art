@@ -7,3 +7,7 @@
 //         'dsn' => ''
 //     ];
 // }
+
+// function set_admin_pass() {
+//     return 12345678;
+// }

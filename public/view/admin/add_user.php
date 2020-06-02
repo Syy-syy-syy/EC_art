@@ -8,10 +8,14 @@ require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 $errors = array();
 
+if (!$_SESSION['is_admin']) {
+    header("Location: /index.php");
+}
+
 if (isset($_POST['Register'])) {
     $errors = validate_register($_POST);
 
-    if ($_POST['admin_pass'] != 12345678) {
+    if ($_POST['admin_pass'] != set_admin_pass()) {
         $errors[] = 'Admin Passwordが違います。';
     }
 
@@ -22,7 +26,7 @@ if (isset($_POST['Register'])) {
     }
 
     if (isset($username) && isset($email) && isset($password)) {
-        $errors[] = register_user($username, $email, $password, 1);
+        $errors[] = register_user($username, $email, $password, $_POST['role_id']);
     }
 }
 
@@ -39,6 +43,11 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
     <input type="password" name="password" minlength="8" placeholder="password" required>
     <label>Confirm Password</label>
     <input type="password" name="password2" minlength="8" placeholder="Confirm Password" required>
+    <label>Choose role</label>
+    <select name="role_id">
+        <option value="1">Admin</option>
+        <option value="5">General</option>
+    </select>
     <label>Admin Password</label>
     <input type="password" name="admin_pass" minlength="8" placeholder="Admin Password" required>
 
