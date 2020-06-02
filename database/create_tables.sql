@@ -11,14 +11,14 @@ CREATE TABLE ec_art.users (
 
 CREATE TABLE ec_art.categories (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL unique,
+    name VARCHAR(50) NOT NULL unique,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE ec_art.items (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL unique,
+    name VARCHAR(50) NOT NULL unique,
     price INT NOT NULL,
     stock INT NOT NULL DEFAULT 0,
     descript VARCHAR(190) unique,

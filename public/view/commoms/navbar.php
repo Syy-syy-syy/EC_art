@@ -10,7 +10,7 @@
                     <a href="#" class="nav-link">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Item</a>
+                    <a href="/items.php" class="nav-link">Item</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Tag</a>
