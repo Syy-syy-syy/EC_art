@@ -71,23 +71,6 @@ function user_login($email, $password) {
     }
 }
 
-function add_category($name) {
-    $pdo = db_init();
-    $sql = 'INSERT INTO categories (name) VALUES (:name)';
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->execute();
-        $stmt = null;
-        $pdo = null;
-        $_SESSION['add_cate'] = $name;
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-}
-
 function add_tag($name) {
     $pdo = db_init();
     $sql = 'INSERT INTO tags (name) VALUES (:name)';
@@ -130,20 +113,6 @@ function add_item($name, $price, $stock, $descript, $category_id) {
     }
 }
 
-function get_categories() {
-    $pdo = db_init();
-    try {
-        $sql = 'SELECT * FROM categories';
-        $stmt= $pdo->query($sql);
-        $all_categories = $stmt->fetchAll();
-        $stmt = null;
-        $pdo = null;
-        return $all_categories;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-}
-
 function get_tags() {
     $pdo = db_init();
     try {
@@ -157,7 +126,6 @@ function get_tags() {
         echo $e->getMessage();
     }
 }
-
 
 function get_all_items() {
     $pdo = db_init();

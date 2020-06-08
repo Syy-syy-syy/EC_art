@@ -9,5 +9,7 @@ if (isset($_SESSION['add_item'])) {
     unset($_SESSION['add_cate']);
 } elseif (isset($_SESSION['add_tag'])) {
     unset($_SESSION['add_tag']);
+} elseif (isset($_SESSION['edit_cate'])) {
+    unset($_SESSION['edit_cate']);
 }
 ?>
