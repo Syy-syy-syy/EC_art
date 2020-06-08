@@ -1,12 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-
-session_start();
-
+require_once(dirname(__FILE__).'/./commoms/php_head.php');
 require_once(dirname(__FILE__).'/../functions/pdo_db.php');
 require_once(dirname(__FILE__).'/../functions/validation.php');
-
-$errors = array();
 
 if (isset($_POST['Register'])) {
     $errors = validate_register($_POST);
@@ -22,7 +17,7 @@ if (isset($_POST['Register'])) {
     }
 }
 
-require_once(dirname(__FILE__).'/./commoms/head.php');
+require_once(dirname(__FILE__).'/./commoms/html_head.php');
 require_once(dirname(__FILE__).'/./commoms/navbar.php');
 ?>
 

@@ -73,5 +73,4 @@ function validate_item_register($post) {
         $errors[] = 'Categoryが未入力です。';
     }
     return $errors;
-
 }

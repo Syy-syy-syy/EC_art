@@ -1,28 +1,27 @@
 <?php
-
 // カテゴリ・商品登録ページ
-
-ini_set('display_errors', 1);
-
+require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
 require_once(dirname(__FILE__).'/../../functions/validation.php');
-
-$errors = array();
-session_start();
 
 if (!$_SESSION['is_admin']) {
     header("Location: /index.php");
 }
 
+// 商品・カテゴリ・タグ登録処理
 if (isset($_POST['category_register'])) {
     if (empty($_POST['name'])) {
         $errors[] = 'Category Nameが未入力です。';
     } else {
-        $cate_name = $_POST['name'];
+        add_category($_POST['name']);
     }
+}
 
-    if ($cate_name) {
-        add_category($cate_name);
+if (isset($_POST['tag_register'])) {
+    if (empty($_POST['name'])) {
+        $errors[] = 'Tag Nameが未入力です。';
+    } else {
+        add_tag($_POST['name']);
     }
 }
 
@@ -30,25 +29,30 @@ if (isset($_POST['item_register'])) {
     $errors = validate_item_register($post);
 
     if (!$errors) {
-        $item_name = $_POST['name'];
-        $price = $_POST['price'];
-        $stock = $_POST['stock'];
-        $descript = $_POST['descript'];
-        $cate_id = $_POST['cate_id'];
-    }
-
-    if (isset($item_name) && isset($price) && isset($stock) && isset($descript) && isset($cate_id)) {
-        add_item($item_name, $price, $stock, $descript, $cate_id);
+        add_item(
+            $_POST['name'], $_POST['price'], $_POST['stock'],
+            $_POST['descript'], $_POST['cate_id']
+        );
     }
 }
 
-$cate_list = get_categories();
+// 成功した場合のフラッシュメッセージ処理
+if (isset($_SESSION['add_item'])) {
+    $success = "商品:" . $_SESSION['add_item'] . "を登録しました。";
+} elseif (isset($_SESSION['add_cate'])) {
+    $success = "カテゴリ:" . $_SESSION['add_cate'] . "を登録しました。";
+} elseif (isset($_SESSION['add_tag'])) {
+    $success = "タグ:" . $_SESSION['add_tag'] . "を登録しました。";
+}
 
-require_once(dirname(__FILE__).'/../commoms/head.php');
+require_once(dirname(__FILE__).'/../commoms/html_head.php');
 require_once(dirname(__FILE__).'/../commoms/navbar.php');
+
+$cate_list = get_categories();
 ?>
+
 <div class="container">
-    カテゴリ登録
+    <h2>カテゴリ登録</h2>
     <form method="POST">
         <label>Category Name</label>
         <input type="text" name="name" placeholder="name" required>
@@ -56,7 +60,7 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
     </form>
 
     <?php if($cate_list) { ?>
-        商品登録
+        <h2>商品登録</h2>
         <form method="POST">
             <label>Item Name</label>
             <input type="text" name="name" placeholder="name" required>
@@ -76,8 +80,13 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
             <button type="submit" name="item_register" class="btn btn-primary">Item Register</button>
         </form>
     <?php } else { ?>
-        商品登録をする場合は最初にカテゴリ登録を行ってください。
+        <h2>商品登録をする場合は最初にカテゴリ登録を行ってください。</h2>
     <?php } ?>
+    <h2>タグ登録</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="タグ名">
+        <input type="submit" name="tag_register" value="タグ登録">
+    </form>
 </div>
 
 <?php

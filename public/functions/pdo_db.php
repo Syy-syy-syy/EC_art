@@ -13,7 +13,7 @@ function db_init() {
         $pdo = new PDO($dsn, $user, $pass, $options);
         return $pdo;
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }
 
@@ -37,7 +37,7 @@ function register_user($username, $email, $password, $role = 5) {
             return 'ユーザー登録に失敗しました。';
         }
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }
 
@@ -67,7 +67,7 @@ function user_login($email, $password) {
             return 'Emailまたはパスワードに誤りがあります。';
         }
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }
 
@@ -80,12 +80,31 @@ function add_category($name) {
         $stmt->execute();
         $stmt = null;
         $pdo = null;
+        $_SESSION['add_cate'] = $name;
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }
+
+function add_tag($name) {
+    $pdo = db_init();
+    $sql = 'INSERT INTO tags (name) VALUES (:name)';
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt = null;
+        $pdo = null;
+        $_SESSION['add_tag'] = $name;
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
 
 function add_item($name, $price, $stock, $descript, $category_id) {
     $pdo = db_init();
@@ -103,10 +122,11 @@ function add_item($name, $price, $stock, $descript, $category_id) {
         print_r($stmt);
         $stmt->execute();
         $pdo = null;
+        $_SESSION['add_item'] = $name;
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }
 
@@ -120,9 +140,24 @@ function get_categories() {
         $pdo = null;
         return $all_categories;
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }
+
+function get_tags() {
+    $pdo = db_init();
+    try {
+        $sql = 'SELECT * FROM tags';
+        $stmt= $pdo->query($sql);
+        $all_tags = $stmt->fetchAll();
+        $stmt = null;
+        $pdo = null;
+        return $all_tags;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
 
 function get_all_items() {
     $pdo = db_init();
@@ -134,6 +169,6 @@ function get_all_items() {
         $pdo = null;
         return $all_items;
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
 }

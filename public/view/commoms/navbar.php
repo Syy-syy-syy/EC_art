@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Category</a>
+                    <a href="/categories.php" class="nav-link">Category</a>
                 </li>
                 <li class="nav-item">
                     <a href="/items.php" class="nav-link">Item</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Tag</a>
+                    <a href="/tags.php" class="nav-link">Tag</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -49,4 +49,7 @@
         </div>
     </nav>
 </header>
-<?php include('error_messages.php'); ?>
+<?php
+include('error_messages.php');
+include('success_messages.php');
+?>
