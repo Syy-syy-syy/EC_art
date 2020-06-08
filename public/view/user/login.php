@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(__FILE__).'/./commoms/php_head.php');
-require_once(dirname(__FILE__).'/../functions/pdo_db.php');
-require_once(dirname(__FILE__).'/../functions/validation.php');
+require_once(dirname(__FILE__).'/../commoms/php_head.php');
+require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
+require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 if (isset($_SESSION['login_name'])) {
     header("Location: /index.php");
@@ -20,8 +20,8 @@ if (isset($_POST['Login'])) {
     }
 }
 
-require_once(dirname(__FILE__).'/./commoms/html_head.php');
-require_once(dirname(__FILE__).'/./commoms/navbar.php');
+require_once(dirname(__FILE__).'/../commoms/html_head.php');
+require_once(dirname(__FILE__).'/../commoms/navbar.php');
 ?>
 
 <form method="POST">
@@ -33,5 +33,5 @@ require_once(dirname(__FILE__).'/./commoms/navbar.php');
 </form>
 
 <?php
-require_once(dirname(__FILE__).'/./commoms/html_script.php');
+require_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>

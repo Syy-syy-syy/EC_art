@@ -1,9 +1,9 @@
 <?php
 // カテゴリ一覧ページ
-require_once(dirname(__FILE__).'/./commoms/php_head.php');
-require_once(dirname(__FILE__).'/../functions/pdo_db.php');
-require_once(dirname(__FILE__).'/./commoms/html_head.php');
-require_once(dirname(__FILE__).'/./commoms/navbar.php');
+require_once(dirname(__FILE__).'/../commoms/php_head.php');
+require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
+require_once(dirname(__FILE__).'/../commoms/html_head.php');
+require_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 $all_items = get_categories();
 ?>
@@ -19,5 +19,5 @@ $all_items = get_categories();
     echo 'カテゴリがありません。';
  } ?>
 <?php
-require_once(dirname(__FILE__).'/./commoms/html_script.php');
+require_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>

@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="/categories.php" class="nav-link">Category</a>
+                    <a href="/category/index.php" class="nav-link">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/items.php" class="nav-link">Item</a>
+                    <a href="/items/index.php" class="nav-link">Item</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/tags.php" class="nav-link">Tag</a>
+                    <a href="/tags/index.php" class="nav-link">Tag</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -39,10 +39,10 @@
                     </li>
                 <?php } else { ?>
                     <li class="nav-item">
-                        <a href="register.php" class="nav-link">Signup</a>
+                        <a href="/user/register.php" class="nav-link">Signup</a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.php" class="nav-link">Login</a>
+                        <a href="/user/login.php" class="nav-link">Login</a>
                     </li>
                 <?php } ?>
             </ul>

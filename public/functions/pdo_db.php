@@ -30,7 +30,7 @@ function register_user($username, $email, $password, $role = 5) {
         $stmt = null;
         $pdo = null;
         if ($flag) {
-            header("Location: /login.php");
+            header("Location: /user/login.php");
         } else {
             $stmt = null;
             $pdo = null;

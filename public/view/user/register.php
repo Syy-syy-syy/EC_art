@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(__FILE__).'/./commoms/php_head.php');
-require_once(dirname(__FILE__).'/../functions/pdo_db.php');
-require_once(dirname(__FILE__).'/../functions/validation.php');
+require_once(dirname(__FILE__).'/../commoms/php_head.php');
+require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
+require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 if (isset($_POST['Register'])) {
     $errors = validate_register($_POST);
@@ -17,8 +17,8 @@ if (isset($_POST['Register'])) {
     }
 }
 
-require_once(dirname(__FILE__).'/./commoms/html_head.php');
-require_once(dirname(__FILE__).'/./commoms/navbar.php');
+require_once(dirname(__FILE__).'/../commoms/html_head.php');
+require_once(dirname(__FILE__).'/../commoms/navbar.php');
 ?>
 
 <form action="register.php" method="POST">
@@ -34,5 +34,5 @@ require_once(dirname(__FILE__).'/./commoms/navbar.php');
 </form>
 
 <?php
-require_once(dirname(__FILE__).'/./commoms/html_script.php');
+require_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>
