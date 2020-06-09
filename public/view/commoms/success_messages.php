@@ -11,5 +11,9 @@ if (isset($_SESSION['add_item'])) {
     unset($_SESSION['add_tag']);
 } elseif (isset($_SESSION['edit_cate'])) {
     unset($_SESSION['edit_cate']);
+} elseif (isset($_SESSION['edit_tag'])) {
+    unset($_SESSION['edit_tag']);
+} elseif (isset($_SESSION['edit_item'])) {
+    unset($_SESSION['edit_item']);
 }
 ?>

@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item">MyPage</li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item"><a href="/logout.php">logout</a></li>
+                            <li class="dropdown-item"><a href="/user/logout.php">logout</a></li>
                         </ul>
                     </li>
                 <?php } else { ?>

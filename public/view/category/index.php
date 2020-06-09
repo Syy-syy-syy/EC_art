@@ -15,7 +15,7 @@ $all_items = get_categories();
     <ul>
         <?php
         foreach($all_items as $item_list) {
-            echo "<li>" . "<a href='/category/show.php?id=" . $item_list['id'] . "'>" .  $item_list['name'] . "</a>" .  "</li>";
+            echo "<li><a href='/category/show.php?id=" . $item_list['id'] . "'>" .  $item_list['name'] . "</a></li>";
         }
         ?>
     </ul>
