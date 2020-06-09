@@ -80,3 +80,21 @@ function delete_category($id) {
         echo $e->getMessage();
     }
 }
+
+function get_belongs_item($id) {
+    $pdo = db_init();
+    try {
+        $sql = 'SELECT t1.name, t1.price, t1.stock, t1.descript
+                FROM items AS t1
+                INNER JOIN categories AS t2
+                ON t1.category_id = t2.id
+                WHERE t2.id = :id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $items = $stmt->fetchAll();
+        return $items;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}

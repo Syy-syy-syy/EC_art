@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/category_func.php');
 
 $category = get_category($_GET['id']);
+$items = get_belongs_item($_GET['id']);
 
 if (isset($_SESSION['edit_cate'])) {
     $success = "カテゴリ名を" . $_SESSION['edit_cate'] . "に編集しました。";
@@ -24,10 +25,21 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
     <ul>
         <li><?php echo $category['name']; ?></li>
     </ul>
-    <?php if (isset($_SESSION['is_admin'])) { ?>
-        <a href="/category/edit.php?id=<?php echo $_GET['id']; ?>">編集ページ</a>
+    <h3><?php echo $category['name']; ?>の商品一覧</h3>
+    <?php if ($items) { ?>
+        <?php foreach ($items as $row) { ?>
+        <ul>
+            <li>商品名：<a href="/items/show.php?id=<?php echo $_GET['id']; ?>"><?php echo $row['name']; ?></a></li>
+            <li>概要：<?php echo $row['descript']; ?></li>
+        </ul>
+        <?php }
+    } else {
+        echo '<p>商品がありません。</p>';
+    }
+    if (isset($_SESSION['is_admin'])) { ?>
+        <a href="/category/edit.php?id=<?php echo $_GET['id']; ?>">カテゴリ編集ページ</a>
         <form method="POST">
-            <input type="submit" name="cate_delete" value="削除">
+            <input type="submit" name="cate_delete" value="カテゴリ削除">
         </form>
     <?php } ?>
 <?php
