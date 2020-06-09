@@ -13,8 +13,8 @@ if (isset($_POST['tag_delete'])) {
     delete_tag($_GET['id']);
 }
 
-require_once(dirname(__FILE__).'/../commoms/html_head.php');
-require_once(dirname(__FILE__).'/../commoms/navbar.php');
+include_once(dirname(__FILE__).'/../commoms/html_head.php');
+include_once(dirname(__FILE__).'/../commoms/navbar.php');
 ?>
 
 <div class="container">
@@ -35,5 +35,5 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
     header("Location: /tags/index.php");
 }
 
-require_once(dirname(__FILE__).'/../commoms/html_script.php');
+include_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>

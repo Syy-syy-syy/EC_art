@@ -2,8 +2,8 @@
 // 商品一覧ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/item_func.php');
-require_once(dirname(__FILE__).'/../commoms/html_head.php');
-require_once(dirname(__FILE__).'/../commoms/navbar.php');
+include_once(dirname(__FILE__).'/../commoms/html_head.php');
+include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 $all_items = get_all_items();
 ?>
@@ -21,5 +21,5 @@ $all_items = get_all_items();
     echo '商品がありません。';
 }
 
-require_once(dirname(__FILE__).'/../commoms/html_script.php');
+include_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>

@@ -6,12 +6,12 @@ if (isset($_COOKIE["PHPSESSID"])) {
 }
 session_destroy();
 
-require_once(dirname(__FILE__).'/../commoms/html_head.php');
-require_once(dirname(__FILE__).'/../commoms/navbar.php');
+include_once(dirname(__FILE__).'/../commoms/html_head.php');
+include_once(dirname(__FILE__).'/../commoms/navbar.php');
 echo '<div class="container">';
 echo 'ログアウト完了';
 echo '</div>';
 
-require_once(dirname(__FILE__).'/../commoms/html_script.php');
+include_once(dirname(__FILE__).'/../commoms/html_script.php');
 
 ?>

@@ -50,6 +50,6 @@
     </nav>
 </header>
 <?php
-include('error_messages.php');
-include('success_messages.php');
+require_once('error_messages.php');
+require_once('success_messages.php');
 ?>

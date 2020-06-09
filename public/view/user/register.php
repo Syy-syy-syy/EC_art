@@ -17,8 +17,8 @@ if (isset($_POST['Register'])) {
     }
 }
 
-require_once(dirname(__FILE__).'/../commoms/html_head.php');
-require_once(dirname(__FILE__).'/../commoms/navbar.php');
+include_once(dirname(__FILE__).'/../commoms/html_head.php');
+include_once(dirname(__FILE__).'/../commoms/navbar.php');
 ?>
 
 <form action="register.php" method="POST">
@@ -34,5 +34,5 @@ require_once(dirname(__FILE__).'/../commoms/navbar.php');
 </form>
 
 <?php
-require_once(dirname(__FILE__).'/../commoms/html_script.php');
+include_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>

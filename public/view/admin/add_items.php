@@ -47,8 +47,8 @@ if (isset($_SESSION['add_item'])) {
     $success = "タグ:" . $_SESSION['add_tag'] . "を登録しました。";
 }
 
-require_once(dirname(__FILE__).'/../commoms/html_head.php');
-require_once(dirname(__FILE__).'/../commoms/navbar.php');
+include_once(dirname(__FILE__).'/../commoms/html_head.php');
+include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 $cate_list = get_categories();
 ?>
@@ -92,5 +92,5 @@ $cate_list = get_categories();
 </div>
 
 <?php
-require_once(dirname(__FILE__).'/../commoms/html_script.php');
+include_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>

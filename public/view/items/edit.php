@@ -6,8 +6,8 @@ if (isset($_SESSION['is_admin'])) {
 
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/item_func.php');
-require_once(dirname(__FILE__).'/../commoms/html_head.php');
-require_once(dirname(__FILE__).'/../commoms/navbar.php');
+include_once(dirname(__FILE__).'/../commoms/html_head.php');
+include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 if (isset($_POST['edit_item'])) {
     edit_item($_POST['item'], $_GET['id']);
@@ -29,5 +29,5 @@ $item = get_item($_GET['id']);
     echo '商品がありません。';
 }
 
-require_once(dirname(__FILE__).'/../commoms/html_script.php');
+include_once(dirname(__FILE__).'/../commoms/html_script.php');
 ?>
