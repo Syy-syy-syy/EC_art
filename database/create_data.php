@@ -18,6 +18,18 @@ for ($i = 0; $i < 10; $i++) {
     $stmt->execute();
 }
 
+// タグ
+$sql = 'INSERT INTO tags (name) VALUES (:name)';
+$stmt = $pdo->prepare($sql);
+$arr = array();
+
+for ($i = 0; $i < 10; $i++) {
+    $arr[] = $faker->unique()->name;
+    $stmt->bindParam(':name', $arr[$i], PDO::PARAM_STR);
+    $stmt->execute();
+}
+
+
 // 商品
 $sql = 'INSERT INTO
             items (name, price, stock, descript, category_id)
