@@ -42,7 +42,7 @@ for ($i = 0; $i < 10; $i++) {
         "price" => $faker->numberBetween(1000,10000),
         "stock" => $faker->numberBetween(1,100),
         "descript" => $faker->sentence(8),
-        "cate_id" => $faker->numberBetween(1,9)
+        "cate_id" => $faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9])
     );
     $stmt->bindParam(':name', $arr['name'], PDO::PARAM_STR);
     $stmt->bindParam(':price', $arr['price'], PDO::PARAM_INT);
