@@ -24,6 +24,29 @@ function get_tags_name($item_id) {
     }
 }
 
+function get_items_name($tag_id) {
+    $pdo = db_init();
+    try {
+        $sql = 'SELECT t1.id, t1.name, t1.descript
+                FROM items AS t1
+                INNER JOIN item_tags AS t2
+                ON t1.id = t2.item_id
+                INNER JOIN tags AS t3
+                ON t2.tag_id = t3.id
+                WHERE t3.id = :id';
+        $stmt= $pdo->prepare($sql);
+        $stmt->bindParam(':id', $tag_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $all_items = $stmt->fetchAll();
+        $stmt = null;
+        $pdo = null;
+        return $all_items;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+
 function check_exist_item_tags($item_id, $tag_id) {
     $pdo = db_init();
     try {

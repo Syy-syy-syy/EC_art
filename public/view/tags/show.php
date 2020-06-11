@@ -2,8 +2,10 @@
 // タグ詳細ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/tag_func.php');
+require_once(dirname(__FILE__).'/../../functions/item_tag_func.php');
 
 $tag = get_tag($_GET['id']);
+$items = get_items_name($_GET['id']);
 
 if (isset($_SESSION['edit_tag'])) {
     $success = "タグ名を" . $_SESSION['edit_tag'] . "に編集しました。";
@@ -24,7 +26,18 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
     <ul>
         <li><?php echo $tag['name']; ?></li>
     </ul>
-    <?php if (isset($_SESSION['is_admin'])) { ?>
+    <h3>紐づけされている商品一覧</h3>
+    <?php if($items)  { ?>
+        <?php foreach ($items as $row) { ?>
+        <ul>
+            <li>商品名：<a href="/items/show.php?id=<?php echo $row['id']; ?>"><?php echo $row['name']; ?></a></li>
+            <li>概要：<?php echo $row['descript']; ?></li>
+        </ul>
+        <?php }
+    } else {
+        echo '<p>商品がありません。</p>';
+    }
+    if (isset($_SESSION['is_admin'])) { ?>
         <a href="/tags/edit.php?id=<?php echo $_GET['id']; ?>">編集ページ</a>
         <form method="POST">
             <input type="submit" name="tag_delete" value="削除">
