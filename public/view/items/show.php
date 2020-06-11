@@ -36,11 +36,9 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
         </li>
         <li>タグ：
             <ul>
-                <?php
-                    foreach(get_tags_name($_GET['id']) as $tag) {
-                        echo '<li>' . $tag['name'] . '</li>';
-                    }
-                ?>
+                <?php foreach(get_tags_name($_GET['id']) as $tag) { ?>
+                    <li><a href="/tags/show.php?id=<?php echo $tag['id']; ?>"><?php echo $tag['name']; ?> </a></li>
+                    <?php } ?>
             </ul>
         </li>
     </ul>
