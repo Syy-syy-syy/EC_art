@@ -75,7 +75,6 @@ function add_item_tag($item_name, $item_id, $tag_id) {
             $stmt->execute();
             $stmt = null;
             $pdo = null;
-            $_SESSION['add_item_tags'] = $item_name;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -93,7 +92,6 @@ function delete_item_tag($item_name, $item_id, $tag_id) {
             $stmt->execute();
             $stmt = null;
             $pdo = null;
-            $_SESSION['delete_item_tags'] = $item_name;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
