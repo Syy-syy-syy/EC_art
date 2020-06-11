@@ -56,15 +56,22 @@ function get_item($id) {
     }
 }
 
-function edit_item($name, $id) {
+function edit_item($params, $id) {
     $pdo = db_init();
     try {
-        $sql = 'UPDATE items SET name = :name WHERE id = :id';
+        $sql = 'UPDATE items
+                SET name = :name, price = :price, stock = :stock,
+                    descript = :descript, category_id = :category_id
+                WHERE id = :id';
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':name', $params['name'], PDO::PARAM_STR);
+        $stmt->bindParam(':price', $params['price'], PDO::PARAM_STR);
+        $stmt->bindParam(':stock', $params['stock'], PDO::PARAM_STR);
+        $stmt->bindParam(':descript', $params['descript'], PDO::PARAM_STR);
+        $stmt->bindParam(':category_id', $params['category_id'], PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $_SESSION['edit_item'] = $name;
+        $_SESSION['edit_item'] = $params['name'];
 
         header("Location: /items/show.php?id=" . $id . "&edit");
         exit();
@@ -83,6 +90,24 @@ function delete_item($id) {
 
         header("Location: /items/index.php");
         exit();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+function get_relate_category($id) {
+    $pdo = db_init();
+    try {
+        $sql = 'SELECT t2.id, t2.name
+                FROM items AS t1
+                INNER JOIN categories AS t2
+                ON t1.category_id = t2.id
+                WHERE t2.id = :id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $category = $stmt->fetch();
+        return $category;
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

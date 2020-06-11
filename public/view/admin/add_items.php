@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
 require_once(dirname(__FILE__).'/../../functions/category_func.php');
 require_once(dirname(__FILE__).'/../../functions/tag_func.php');
+require_once(dirname(__FILE__).'/../../functions/item_func.php');
 require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 if (!$_SESSION['is_admin']) {
@@ -51,6 +52,7 @@ include_once(dirname(__FILE__).'/../commoms/html_head.php');
 include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 $cate_list = get_categories();
+$item_list = get_all_items();
 ?>
 
 <div class="container">
@@ -89,6 +91,16 @@ $cate_list = get_categories();
         <input type="text" name="name" placeholder="タグ名">
         <input type="submit" name="tag_register" value="タグ登録">
     </form>
+    <p>商品にタグを登録する場合は商品詳細ページへ移動をしてください。</p>
+    <p>後にテーブルを作成すること</p>
+    <ul>
+        <?php foreach($item_list as $item) {
+            echo "<li>" . $item['name'] . "</li>";
+            echo "<li>" . $item['descript'] . "</li>";
+            echo "<li><a href='/items/edit.php?id=" . $item['id'] . "'><button>編集</button></a></li>";
+        }?>
+    </ul>
+
 </div>
 
 <?php

@@ -29,6 +29,7 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
         <form method="POST">
             <input type="submit" name="tag_delete" value="削除">
         </form>
+        <a href="/admin/add_items.php">商品登録ページ</a>
     <?php } ?>
 <?php
 } else {
