@@ -8,7 +8,7 @@ $item = get_item($_GET['id']);
 $category = get_relate_category($_GET['id']);
 
 if (isset($_SESSION['edit_item'])) {
-    $success = "商品名を" . $_SESSION['edit_item'] . "に編集しました。";
+    $success = "商品：" . $_SESSION['edit_item'] . "を編集しました。";
 }
 
 if (isset($_POST['item_delete'])) {
@@ -36,11 +36,11 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
         </li>
         <li>タグ：
             <ul>
-            <?php
-                foreach(get_tags_name($_GET['id']) as $tag) {
-                    echo '<li>' . $tag['name'] . '</li>';
-                }
-            ?>
+                <?php
+                    foreach(get_tags_name($_GET['id']) as $tag) {
+                        echo '<li>' . $tag['name'] . '</li>';
+                    }
+                ?>
             </ul>
         </li>
     </ul>

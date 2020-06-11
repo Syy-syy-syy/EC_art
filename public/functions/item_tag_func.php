@@ -58,3 +58,21 @@ function add_item_tag($item_name, $item_id, $tag_id) {
         }
     }
 }
+
+function delete_item_tag($item_name, $item_id, $tag_id) {
+    $pdo = db_init();
+    $sql = 'DELETE FROM item_tags WHERE item_id = :item_id AND tag_id = :tag_id';
+    if (check_exist_item_tags($item_id, $tag_id)) {
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':item_id', $item_id, PDO::PARAM_INT);
+            $stmt->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt = null;
+            $pdo = null;
+            $_SESSION['delete_item_tags'] = $item_name;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+}

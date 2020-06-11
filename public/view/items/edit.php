@@ -14,8 +14,10 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 if (isset($_POST['edit_item'])) {
     foreach ($_POST['tag_id'] as $flag) {
-        if ($flag['flag'] != 0) {
-            add_item_tag($_POST['name'], $_GET['id'], $flag['flag']);
+        if ($flag['flag'] == 1) {
+            add_item_tag($_POST['name'], $_GET['id'], $flag['id']);
+        } elseif ($flag['flag'] == 0) {
+            delete_item_tag($_POST['name'], $_GET['id'], $flag['id']);
         }
     }
 
@@ -56,8 +58,13 @@ $tags = get_tags();
         <?php if ($tags) { ?>
             <label>タグ：</label>
             <?php foreach($tags as $tag) { ?>
-                <input id="tag<?php echo $tag['id']; ?>" type="hidden" name="tag_id[<?php echo $tag['id']; ?>][flag]" value="0">
-                <input id="tag<?php echo $tag['id']; ?>" type="checkbox" name="tag_id[<?php echo $tag['id']; ?>][flag]" value="<?php echo $tag['id']; ?>">
+                <input type="hidden" name="tag_id[<?php echo $tag['id']; ?>][flag]" value="0">
+                <input type="hidden" name="tag_id[<?php echo $tag['id']; ?>][id]" value="<?php echo $tag['id']; ?>">
+                <?php if(check_exist_item_tags($_GET['id'], $tag['id'])) { ?>
+                    <input id="tag<?php echo $tag['id']; ?>" type="checkbox" name="tag_id[<?php echo $tag['id']; ?>][flag]" value="1" checked>
+                <?php } else { ?>
+                    <input id="tag<?php echo $tag['id']; ?>" type="checkbox" name="tag_id[<?php echo $tag['id']; ?>][flag]" value="1">
+                <?php } ?>
                 <label for="tag<?php echo $tag['id']; ?>"><?php echo $tag['name']; ?></label>
             <?php } ?>
             </select>
