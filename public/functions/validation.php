@@ -74,3 +74,10 @@ function validate_item_register($post) {
     }
     return $errors;
 }
+
+function is_login() {
+    if (!isset($_SESSION['login_name'])) {
+        header("Location: /user/login.php");
+        exit();
+    }
+}

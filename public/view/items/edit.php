@@ -1,6 +1,6 @@
 <?php
 // 商品編集ページ
-if (isset($_SESSION['is_admin'])) {
+if (!isset($_SESSION['is_admin'])) {
     header("Location: /items/index.php");
 }
 
@@ -9,8 +9,11 @@ require_once(dirname(__FILE__).'/../../functions/item_func.php');
 require_once(dirname(__FILE__).'/../../functions/category_func.php');
 require_once(dirname(__FILE__).'/../../functions/tag_func.php');
 require_once(dirname(__FILE__).'/../../functions/item_tag_func.php');
+require_once(dirname(__FILE__).'/../../functions/validation.php');
 include_once(dirname(__FILE__).'/../commoms/html_head.php');
 include_once(dirname(__FILE__).'/../commoms/navbar.php');
+
+is_login();
 
 if (isset($_POST['edit_item'])) {
     foreach ($_POST['tag_id'] as $flag) {
@@ -34,6 +37,7 @@ if (isset($_POST['edit_item'])) {
 $item = get_item($_GET['id']);
 $categories = get_categories();
 $tags = get_tags();
+
 ?>
 
 <div class="container">

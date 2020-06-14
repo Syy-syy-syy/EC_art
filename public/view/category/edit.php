@@ -1,6 +1,6 @@
 <?php
 // カテゴリ編集ページ
-if (isset($_SESSION['is_admin'])) {
+if (!isset($_SESSION['is_admin'])) {
     header("Location: /category/index.php");
 }
 

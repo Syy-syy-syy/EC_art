@@ -1,5 +1,9 @@
 <?php
+require_once(dirname(__FILE__).'/../../functions/validation.php');
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
+
+is_login();
+
 $_SESSION = array();
 if (isset($_COOKIE["PHPSESSID"])) {
     setcookie("PHPSESSID", '', time() - 1800, '/');

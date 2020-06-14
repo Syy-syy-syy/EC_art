@@ -45,4 +45,3 @@ function delete_cart_item($item_id) {
     header("Location: /cart/");
     exit();
 }
-// カートから削除
