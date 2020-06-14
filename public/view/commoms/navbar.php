@@ -27,7 +27,7 @@
                     </li>
                     <?php } ?>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Cart</a>
+                        <a href="/cart/" class="nav-link">Cart</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?php echo htmlspecialchars($_SESSION['login_name']); ?></a>

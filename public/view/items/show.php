@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
 require_once(dirname(__FILE__).'/../../functions/item_func.php');
 require_once(dirname(__FILE__).'/../../functions/item_tag_func.php');
+require_once(dirname(__FILE__).'/../../functions/cart_func.php');
 
 $item = get_item($_GET['id']);
 $category = get_relate_category($_GET['id']);
@@ -13,6 +14,12 @@ if (isset($_SESSION['edit_item'])) {
 
 if (isset($_POST['item_delete'])) {
     delete_item($_GET['id']);
+}
+
+if (isset($_POST['insert_cart'])) {
+    if ($_POST['item_count'] > 0){
+        add_ses_cart($_POST['item_id'], $_POST['item_count']);
+    }
 }
 
 include_once(dirname(__FILE__).'/../commoms/html_head.php');
@@ -38,8 +45,20 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
             <ul>
                 <?php foreach(get_tags_name($_GET['id']) as $tag) { ?>
                     <li><a href="/tags/show.php?id=<?php echo $tag['id']; ?>"><?php echo $tag['name']; ?> </a></li>
-                    <?php } ?>
+                <?php } ?>
             </ul>
+        </li>
+        <li>
+            <form method="POST">
+                <select name="item_count">
+                    <option value="">数を選択してください。</option>
+                    <?php for($i = 1; $i <= $item['stock']; $i++ ) { ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?>個</option>
+                    <?php } ?>
+                </select>
+                <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
+                <input type="submit" name="insert_cart" value="カートへ入れる">
+            </form>
         </li>
     </ul>
     <?php if (isset($_SESSION['is_admin'])) { ?>
