@@ -12,7 +12,7 @@ $sql = 'INSERT INTO categories (name) VALUES (:name)';
 $stmt = $pdo->prepare($sql);
 $arr = array();
 
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 50; $i++) {
     $arr[] = $faker->unique()->name;
     $stmt->bindParam(':name', $arr[$i], PDO::PARAM_STR);
     $stmt->execute();
@@ -23,7 +23,7 @@ $sql = 'INSERT INTO tags (name) VALUES (:name)';
 $stmt = $pdo->prepare($sql);
 $arr = array();
 
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 50; $i++) {
     $arr[] = $faker->unique()->name;
     $stmt->bindParam(':name', $arr[$i], PDO::PARAM_STR);
     $stmt->execute();
@@ -36,7 +36,7 @@ $sql = 'INSERT INTO
         VALUES
             (:name, :price, :stock, :descript, :category_id)';
 $stmt = $pdo->prepare($sql);
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 50; $i++) {
     $arr = array(
         "name" => $faker->unique()->name,
         "price" => $faker->numberBetween(1000,10000),

@@ -6,6 +6,7 @@ include_once(dirname(__FILE__).'/../commoms/html_head.php');
 include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 $all_items = get_all_items();
+$pages_info = item_pagenation();
 ?>
 
 <div class="container">
@@ -13,10 +14,13 @@ $all_items = get_all_items();
 </div>
 <?php if ($all_items) {?>
     <ul>
-        <?php foreach($all_items as $item_list) {
+        <?php foreach($pages_info['data'] as $item_list) {
             echo "<li><a href='/items/show.php?id=" . $item_list['id'] . "'>" .  $item_list['name'] . "</a></li>";
         } ?>
     </ul>
+    <?php for($i = 1; $i <= $pages_info['pages']; $i++) { ?>
+        <a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
+    <?php } ?>
 <?php } else {
     echo '商品がありません。';
 }

@@ -112,3 +112,36 @@ function get_relate_category($id) {
         echo $e->getMessage();
     }
 }
+
+function item_pagenation() {
+    if(!isset($_GET['page'])) {
+        $now = 1;
+    } else {
+        $now = $_GET['page'];
+    }
+
+    // データ総件数
+    define('MAX',9);
+    $pdo = db_init();
+    $count = $pdo->query('SELECT COUNT(*) AS count FROM items');
+    $total_count = $count->fetch();
+    $pages = ceil($total_count['count'] / MAX);
+
+    // データ抽出
+    $sql = 'SELECT * FROM items ORDER BY id LIMIT :start, 9';
+    $stmt = $pdo->prepare($sql);
+    if ($now == 1) {
+        $i = 0;
+        $stmt->bindParam(':start', $i, PDO::PARAM_INT);
+    } else {
+        $i = ($now - 1) * 9;
+        $stmt->bindParam(':start', $i, PDO::PARAM_INT);
+    }
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return [
+        'pages' => $pages,
+        'data' => $data
+    ];
+}
