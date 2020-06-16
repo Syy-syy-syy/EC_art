@@ -110,6 +110,7 @@ function tag_pagenation() {
 
     return [
         'pages' => $pages,
+        'count' => $total_count['count'],
         'data' => $data
     ];
 }

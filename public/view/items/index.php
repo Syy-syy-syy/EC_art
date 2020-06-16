@@ -12,7 +12,11 @@ $pages_info = item_pagenation();
 <div class="container">
 商品一覧ページ
 </div>
-<?php if ($all_items) {?>
+<?php if (!empty($pages_info) && $pages_info['count'] != 0) { ?>
+    <?php echo '商品合計件数：' . $pages_info['count'] . '件です。' ?>
+    <p>
+        <?php echo ((($_GET['page'] ?? 1) - 1) * 9 + 1) .'件目から' . (($_GET['page'] ?? 1) * 9 > $pages_info['count'] ? $pages_info['count'] : (($_GET['page'] ?? 1)) * 9) . '件目までを表示しています。' ?>
+    </p>
     <ul>
         <?php foreach($pages_info['data'] as $item_list) {
             echo "<li><a href='/items/show.php?id=" . $item_list['id'] . "'>" .  $item_list['name'] . "</a></li>";

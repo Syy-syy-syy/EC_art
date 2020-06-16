@@ -12,7 +12,11 @@ $pages_info = category_pagenation();
 <div class="container">
 カテゴリ一覧ページ
 </div>
-<?php if ($all_items) {?>
+<?php if (!empty($pages_info) && $pages_info['count'] != 0) { ?>
+    <?php echo 'カテゴリ合計件数：' . $pages_info['count'] . '件です。' ?>
+    <p>
+        <?php echo ((($_GET['page'] ?? 1) - 1) * 9 + 1) .'件目から' . (($_GET['page'] ?? 1) * 9 > $pages_info['count'] ? $pages_info['count'] : (($_GET['page'] ?? 1)) * 9) . '件目までを表示しています。' ?>
+    </p>
     <ul>
         <?php
         foreach($pages_info['data'] as $item_list) {
