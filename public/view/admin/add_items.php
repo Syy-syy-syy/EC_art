@@ -52,7 +52,7 @@ include_once(dirname(__FILE__).'/../commoms/html_head.php');
 include_once(dirname(__FILE__).'/../commoms/navbar.php');
 
 $cate_list = get_categories();
-$item_list = get_all_items();
+$item_list = item_pagenation();
 ?>
 
 <div class="container">
@@ -93,13 +93,25 @@ $item_list = get_all_items();
     </form>
     <p>商品にタグを登録する場合は商品詳細ページへ移動をしてください。</p>
     <p>後にテーブルを作成すること</p>
-    <ul>
-        <?php foreach($item_list as $item) {
-            echo "<li>" . $item['name'] . "</li>";
-            echo "<li>" . $item['descript'] . "</li>";
-            echo "<li><a href='/items/edit.php?id=" . $item['id'] . "'><button>編集</button></a></li>";
-        }?>
-    </ul>
+    <?php if (!empty($item_list) && $item_list['count'] != 0) { ?>
+        <?php echo '商品合計件数：' . $item_list['count'] . '件です。' ?>
+        <p>
+            <?php echo ((($_GET['page'] ?? 1) - 1) * 9 + 1) .'件目から' . (($_GET['page'] ?? 1) * 9 > $item_list['count'] ? $item_list['count'] : (($_GET['page'] ?? 1)) * 9) . '件目までを表示しています。' ?>
+        </p>
+        <ul>
+            <?php foreach($item_list['data'] as $item) {
+                echo "<li>" . $item['name'] . "</li>";
+                echo "<li>" . $item['descript'] . "</li>";
+                echo "<li><a href='/items/edit.php?id=" . $item['id'] . "'><button>編集</button></a></li>";
+            }?>
+        </ul>
+    <?php for($i = 1; $i <= $item_list['pages']; $i++) { ?>
+        <a href="?page=<?php echo $i ?>"><?php echo $i ?></a>
+    <?php } ?>
+<?php
+} else {
+    echo '商品がありません。';
+} ?>
 
 </div>
 
