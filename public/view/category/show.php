@@ -43,6 +43,7 @@ include_once(dirname(__FILE__).'/../commoms/navbar.php');
         </form>
         <a href="/admin/add_items.php">商品登録ページ</a>
     <?php } ?>
+    <a href="/category/">戻る</a>
 <?php
 } else {
     header("Location: /category/index.php");

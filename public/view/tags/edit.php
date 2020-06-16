@@ -24,6 +24,7 @@ $tag = get_tag($_GET['id']);
         <input type="text" name="tag" value="<?php echo $tag['name']; ?>">
         <input type="submit" name="edit_tag" value="更新">
     </form>
+    <a href="/tags/show.php?id=<?php echo $_GET['id'] ?>">戻る</a>
 <?php
 } else {
     echo 'タグがありません。';

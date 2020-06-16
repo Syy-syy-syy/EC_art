@@ -75,6 +75,8 @@ $tags = get_tags();
         <?php } ?>
         <input type="submit" name="edit_item" value="更新">
     </form>
+    <a href="/items/show.php?id=<?php echo $_GET['id'] ?>">戻る</a>
+
 <?php
 } else {
     header("Location: /items/index.php");

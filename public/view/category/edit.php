@@ -24,6 +24,7 @@ $category = get_category($_GET['id']);
         <input type="text" name="category" value="<?php echo $category['name']; ?>">
         <input type="submit" name="edit_cate" value="更新">
     </form>
+    <a href="/category/show.php?id=<?php echo $_GET['id'] ?>">戻る</a>
 <?php
 } else {
     echo 'カテゴリがありません。';
