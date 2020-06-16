@@ -18,7 +18,7 @@ if (isset($_POST['delete_cart'])) {
 
 <div class="container">
 カート一覧ページ
-<?php if (isset($_SESSION['cart_info'])) { ?>
+<?php if (!empty($_SESSION['cart_info'])) { ?>
     <ul>
     <?php foreach($_SESSION['cart_info'] as $item_info) {
         $item = get_cart_items($item_info['item_id']); ?>
