@@ -1,5 +1,5 @@
-<header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">EC_art</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>
@@ -19,14 +19,14 @@
             <ul class="navbar-nav">
                 <li>
                     <form class="form-inline my-2 my-lg-0" action="/search/index.php" method="GET">
-                        <input class="form-control mr-sm-2" type="text" name="q" placeholder="検索キーワード" required>
+                        <input class="form-control mr-sm-2" type="text" name="q" placeholder="Keyword" required>
                         <select class="form-control mr-sm-2" name="t" required>
-                            <option value="" selected>検索対象</option>
+                            <option value="" selected>Select Target</option>
                             <option value="items">Item</option>
                             <option value="categories">Category</option>
                             <option value="tags">Tag</option>
                         </select>
-                        <input class="btn btn-outline-success btn-sm mr-sm-2" type="submit">
+                        <input class="btn btn-outline-success btn-sm mr-sm-2" type="submit" value="Search">
                     </form>
                 </li>
                 <?php if (isset($_SESSION['login_name'])) { ?>

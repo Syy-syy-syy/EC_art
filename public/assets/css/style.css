@@ -1,0 +1,9 @@
+@charset 'UTF-8';
+
+.jumbotron {
+    background-image: url('../img/top_page.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
