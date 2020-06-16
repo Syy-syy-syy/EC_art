@@ -1,7 +1,6 @@
 <?php
 // カテゴリ詳細ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/category_func.php');
 
 $category = get_category($_GET['id']);
 $items = get_belongs_item($_GET['id']);

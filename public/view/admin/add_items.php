@@ -1,11 +1,6 @@
 <?php
 // カテゴリ・商品登録ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
-require_once(dirname(__FILE__).'/../../functions/category_func.php');
-require_once(dirname(__FILE__).'/../../functions/tag_func.php');
-require_once(dirname(__FILE__).'/../../functions/item_func.php');
-require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 if (!$_SESSION['is_admin']) {
     header("Location: /index.php");

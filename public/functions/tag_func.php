@@ -1,7 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__).'/./pdo_db.php');
-
 function add_tag($name) {
     $pdo = db_init();
     $sql = 'INSERT INTO tags (name) VALUES (:name)';

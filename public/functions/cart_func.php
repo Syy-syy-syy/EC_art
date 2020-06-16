@@ -1,9 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__).'/./pdo_db.php');
-
 // DBからデータを取得し、セッションに配列として保存すること
-
 function add_ses_cart($item_id, $item_count) {
     if ($_SESSION['cart_info'][$item_id]) {
         unset($_SESSION['cart_info'][$item_id]);

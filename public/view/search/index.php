@@ -1,7 +1,5 @@
 <?php
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/cart_func.php');
-require_once(dirname(__FILE__).'/../../functions/validation.php');
 include_once(dirname(__FILE__).'/../commoms/html_head.php');
 include_once(dirname(__FILE__).'/../commoms/navbar.php');
 

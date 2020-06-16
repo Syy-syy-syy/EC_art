@@ -1,7 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__).'/./pdo_db.php');
-
 function get_tags_name($item_id) {
     $pdo = db_init();
     try {

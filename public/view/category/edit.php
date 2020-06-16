@@ -1,7 +1,6 @@
 <?php
 // カテゴリ編集ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/category_func.php');
 include_once(dirname(__FILE__).'/../commoms/html_head.php');
 include_once(dirname(__FILE__).'/../commoms/navbar.php');
 

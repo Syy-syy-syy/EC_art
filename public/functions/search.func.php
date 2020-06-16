@@ -1,7 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__).'/./pdo_db.php');
-
 function search_data($keyword, $columns) {
     if(!isset($_GET['page'])) {
         $now = 1;

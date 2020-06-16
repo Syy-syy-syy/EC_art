@@ -1,8 +1,6 @@
 <?php
 // タグ詳細ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/tag_func.php');
-require_once(dirname(__FILE__).'/../../functions/item_tag_func.php');
 
 $tag = get_tag($_GET['id']);
 $items = get_items_name($_GET['id']);

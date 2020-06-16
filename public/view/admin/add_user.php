@@ -1,7 +1,5 @@
 <?php
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/pdo_db.php');
-require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 if (!$_SESSION['is_admin']) {
     header("Location: /index.php");

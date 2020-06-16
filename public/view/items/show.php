@@ -1,10 +1,6 @@
 <?php
 // 商品詳細ページ
 require_once(dirname(__FILE__).'/../commoms/php_head.php');
-require_once(dirname(__FILE__).'/../../functions/item_func.php');
-require_once(dirname(__FILE__).'/../../functions/item_tag_func.php');
-require_once(dirname(__FILE__).'/../../functions/cart_func.php');
-require_once(dirname(__FILE__).'/../../functions/validation.php');
 
 $item = get_item($_GET['id']);
 $category = get_relate_category($_GET['id']);
