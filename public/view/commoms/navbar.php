@@ -17,6 +17,18 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+                <li>
+                    <form class="form-inline my-2 my-lg-0" action="/search/index.php" method="GET">
+                        <input class="form-control mr-sm-2" type="text" name="q" placeholder="検索キーワード" required>
+                        <select class="form-control mr-sm-2" name="t" required>
+                            <option value="" selected>検索対象</option>
+                            <option value="items">Item</option>
+                            <option value="categories">Category</option>
+                            <option value="tags">Tag</option>
+                        </select>
+                        <input class="btn btn-outline-success btn-sm mr-sm-2" type="submit">
+                    </form>
+                </li>
                 <?php if (isset($_SESSION['login_name'])) { ?>
                     <?php if ($_SESSION['is_admin']) { ?>
                         <li class="nav-item">
